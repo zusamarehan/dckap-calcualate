@@ -15,6 +15,10 @@ $routes = [
     '/registration' => 'Controllers/Registration/registration.php',
     '/register' => 'Controllers/Registration/register.php',
     '/logout' => 'Controllers/Logout/logout.php',
+    // to display the form
+    '/login' => 'Controllers/Login/login.php',
+    // to do the actual login logic
+    '/login-logic' => 'Controllers/Login/login-logic.php',
 ];
 
 if (array_key_exists($_SERVER['REQUEST_URI'], $routes)) {
