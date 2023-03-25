@@ -1,0 +1,46 @@
+span{
+    color: red;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+button{
+    padding: 5px 20px;
+    background-color: crimson;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+}
+button:hover{
+    background-color: green;
+    transition: 1s;
+    cursor: pointer;
+}
+h1{
+    text-align: center;
+}
+.html-form{
+    text-align: center;
+}
+.num1{
+    border: 1px solid black;
+    border-radius: 4px;
+}
+select{
+    border: 1px solid black;
+}
+li{
+    display: flex;
+}
+table{
+    margin: 0px auto;
+}
+.btn{
+   position: relative;
+    left: 480px;
+    top: 10px;
+}
+td{
+    font-size: 20px;
+}
