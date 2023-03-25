@@ -1,5 +1,9 @@
 <?php
 
+if (!isset($_SESSION['login'])) {
+    header('Location: /registration');
+}
+
 try{
     if($_POST['num1'] !="0" || $_POST['num2'] !="0") {
         $name = $_POST['num1'];

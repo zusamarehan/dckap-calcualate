@@ -4,5 +4,6 @@ if (!isset($_SESSION['login'])) {
     header('Location: /registration');
 }
 
+session_destroy();
 
-require 'Views/home.view.php';
+header('Location: /registration');

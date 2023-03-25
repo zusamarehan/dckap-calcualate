@@ -1,5 +1,9 @@
 <?php
 
+if (!isset($_SESSION['login'])) {
+    header('Location: /registration');
+}
+
 try{
     $statement = ($app['db'])->query("select * from operations");
     $calc=$statement->fetchAll(PDO::FETCH_OBJ);
