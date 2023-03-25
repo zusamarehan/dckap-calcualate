@@ -1,5 +1,5 @@
 <?php
-
+require 'connection.php';
 if(isset($_POST['update'])) {
     try {
         $id = $_POST['update'];
@@ -27,10 +27,13 @@ if(isset($_POST['update'])) {
 
         }
 
-        $statements = $app['db']->query("UPDATE operations SET first_operator='$name',operator='$selects',second_operator='$name1',result='$result' WHERE id=".$id);
-        header('Location: /list');
+        $queries = "UPDATE operations SET first_operator='$name',operator='$selects',second_operator='$name1',result='$result' WHERE id=:id";
+        $statements = $pdo->prepare($queries);
+        $data = [":id"=>$id];
+        $statements->execute($data);
     } catch (PDOException $e) {
         die($e->getMessage());
     }
 }
-header('Location: /list');
+header('Location: history.php');
+?>

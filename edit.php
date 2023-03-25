@@ -1,3 +1,22 @@
+<?php
+require 'connection.php';
+if(isset($_POST['edit'])){
+    $id = $_POST['edit'];
+    try{
+
+        $query = "SELECT *  FROM operations WHERE id=:id";
+        $statement = $pdo->prepare($query);
+        $data = [":id" => $id];
+        $statement->execute($data);
+        $calc=$statement->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    catch(PDOException $e){
+        die ("delete failed");
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +26,7 @@
 <body>
     <h1>Edit Your Details</h1>
     <?php foreach($calc as $calculation):?>
-    <form action="/update" method="post" class="html-form">
+    <form action="update.php" method="post" class="html-form">
         <input type="number" name="num3" value="<?=$calculation->first_operator;?>">
         <select name="cal">
             <option name="add" value="+">+</option>
@@ -17,7 +36,7 @@
         </select>
         <input type="number" name="num4" value="<?=$calculation->second_operator;?>">
         <button type="submit" value="<?=$calculation->id;?>" name="update">Edit</button>
-        <button><a href="/list">Back</a></button>
+        <button><a href="history.php">Back</a></button>
     <?php endforeach;?>
     </form>
 </body>
