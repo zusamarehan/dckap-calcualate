@@ -8,13 +8,16 @@ $app['db'] = (new Database())->db;
 
 $router = new \Core\Router();
 
-$router->get('/', 'Controllers/home.php');
+$router->get('/', 'Controllers/home.php')->only('auth');
 $router->get('/registration', 'Controllers/Registration/registration.php');
-$router->get('/register', 'Controllers/Registration/register.php');
-$router->get('/logout', 'Controllers/Logout/logout.php');
-$router->get('/login', 'Controllers/Login/login.php');
-$router->get('/login-logic', 'Controllers/Login/login-logic.php');
+// $router->get('/register', 'Controllers/Registration/register.php')->only('guest');
+// $router->get('/logout', 'Controllers/Logout/logout.php')->only('auth');
+// $router->get('/login', 'Controllers/Login/login.php')->only('guest');
+// $router->get('/login-logic', 'Controllers/Login/login-logic.php')->only('guest');
 
-require $router->route();
+
+$router->route();
+var_dump($router->routes);
+die();
 
 ?>
