@@ -3,29 +3,18 @@
 $app = [];
 session_start();
 require 'connection.php';
+require 'Core/Router.php';
 $app['db'] = (new Database())->db;
 
-$routes = [
-    '/' => 'Controllers/home.php',
-    '/list' => 'Controllers/list.php',
-    '/calculate' => 'Controllers/calculate.php',
-    '/delete' => 'Controllers/delete.php',
-    '/edit' => 'Controllers/edit.php',
-    '/update' => 'Controllers/update.php',
-    '/registration' => 'Controllers/Registration/registration.php',
-    '/register' => 'Controllers/Registration/register.php',
-    '/logout' => 'Controllers/Logout/logout.php',
-    // to display the form
-    '/login' => 'Controllers/Login/login.php',
-    // to do the actual login logic
-    '/login-logic' => 'Controllers/Login/login-logic.php',
-];
+$router = new \Core\Router();
 
-if (array_key_exists($_SERVER['REQUEST_URI'], $routes)) {
-    require $routes[$_SERVER['REQUEST_URI']];
-} else {
-    http_response_code(404);
-    require 'Views/errors/404.view.php';
-}
+$router->get('/', 'Controllers/home.php');
+$router->get('/registration', 'Controllers/Registration/registration.php');
+$router->get('/register', 'Controllers/Registration/register.php');
+$router->get('/logout', 'Controllers/Logout/logout.php');
+$router->get('/login', 'Controllers/Login/login.php');
+$router->get('/login-logic', 'Controllers/Login/login-logic.php');
+
+require $router->route();
 
 ?>
