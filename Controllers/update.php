@@ -1,5 +1,9 @@
 <?php
 
+if (!isset($_SESSION['login'])) {
+    header('Location: /registration');
+}
+
 if(isset($_POST['update'])) {
     try {
         $id = $_POST['update'];
